@@ -4,13 +4,14 @@ import { map } from 'rxjs/operators';
 import { ReplaceSource } from 'webpack-sources';
 import { User } from '../models/user';
 import { ReplaySubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService { // An Angular Service is a singleton
 
-  baseUrl = 'https://localhost:44331/api/';
+  baseUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
